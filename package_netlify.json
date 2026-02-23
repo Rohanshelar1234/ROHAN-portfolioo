@@ -1,0 +1,19 @@
+{
+  "name": "rohan-shelar-portfolio-netlify",
+  "version": "1.0.0",
+  "description": "Rohan Shelar Portfolio - Netlify Version",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build needed'",
+    "dev": "netlify dev"
+  },
+  "keywords": ["portfolio", "netlify", "static", "functions"],
+  "author": "Rohan Shelar",
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

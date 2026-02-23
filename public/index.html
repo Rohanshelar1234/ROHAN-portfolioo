@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohan Shelar - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Full Screen Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-text">
+            <h1>Loading Rohan Shelar Portfolio...</h1>
+        </div>
+    </div>
+
+    <!-- Particle Background Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="glass-card">
+            <!-- Typing Animation Section -->
+            <div class="typing-section">
+                <div class="typing-text">
+                    <span id="typingText"></span>
+                    <span class="cursor">|</span>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <div class="profile-info">
+                    <h1 class="name">Rohan Shelar</h1>
+                    <p class="instagram">
+                        <a href="https://instagram.com/rohan_shelar_18" target="_blank" rel="noopener noreferrer">@rohan_shelar_18</a>
+                    </p>
+                    <div class="visitor-counter">
+                        <span>Visitor #</span>
+                        <span id="visitorCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome Message -->
+            <div class="welcome-section">
+                <p class="welcome-message">Hey 👋 Thanks for checking my profile — let's connect!</p>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-section">
+                <h2 class="form-title">Send Me a Message</h2>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Send Message</span>
+                    </button>
+                </form>
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
