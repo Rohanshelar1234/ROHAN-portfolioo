@@ -19,119 +19,314 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(0,212,255,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(0,153,255,0.1);stop-opacity:1" /></linearGradient></defs><circle cx="50" cy="50" r="40" fill="none" stroke="url(%23grad)" stroke-width="0.5" opacity="0.3"/></svg>');
+            background-size: 200px 200px;
+            animation: float 20s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 212, 255, 0.5);
+            border-radius: 50%;
+            animation: particle-float 15s infinite linear;
+        }
+
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
         .portfolio-card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 40px;
-            max-width: 500px;
+            padding: 50px;
+            max-width: 550px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            box-shadow: 0 20px 60px rgba(31, 38, 135, 0.4);
+            position: relative;
+            z-index: 10;
+            animation: slideInUp 1s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glowing Border Animation */
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00d4ff, #0099ff, #00d4ff);
+            border-radius: 24px;
+            z-index: -1;
+            opacity: 0;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.3; }
         }
 
         .name {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             color: #ffffff;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #00d4ff, #0099ff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 30px rgba(0, 212, 255, 0.3); }
+            50% { text-shadow: 0 0 40px rgba(0, 212, 255, 0.5); }
         }
 
         .instagram {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #b3b3b3;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .instagram a {
             color: #b3b3b3;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.4s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .instagram a:hover {
             color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .instagram-icon {
+            font-size: 1.4rem;
+            margin-right: 8px;
         }
 
         .visitor-counter {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 212, 255, 0.15);
             border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 25px;
-            padding: 8px 20px;
-            font-size: 0.9rem;
+            border-radius: 30px;
+            padding: 12px 24px;
+            font-size: 0.95rem;
             color: #00d4ff;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visitor-counter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .visitor-icon {
+            font-size: 1.2rem;
         }
 
         .welcome-message {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #e0e0e0;
-            margin-bottom: 30px;
-            line-height: 1.6;
+            margin-bottom: 35px;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .welcome-message::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            transform: translateX(-50%);
         }
 
         .form-title {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #0099ff, #00d4ff);
+            border-radius: 1px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
             color: #ffffff;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.6);
+            transition: opacity 0.3s ease;
+        }
+
+        .form-group input:focus::placeholder,
+        .form-group textarea:focus::placeholder {
+            opacity: 0.3;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
             border-color: #00d4ff;
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+            border-width: 2px;
+            box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.2), 
+                        0 0 20px rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
         }
 
         .submit-btn {
             background: linear-gradient(45deg, #00d4ff, #0099ff);
             border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
+            border-radius: 12px;
+            padding: 18px 40px;
             color: #ffffff;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             width: 100%;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+            background: linear-gradient(45deg, #00e5ff, #00a8ff);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
         }
 
         .submit-btn:disabled {
@@ -140,130 +335,115 @@
             transform: none;
         }
 
+        .submit-btn:disabled::before {
+            animation: none;
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
         .form-message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
             display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: messageSlide 0.5s ease-out;
+        }
+
+        @keyframes messageSlide {
+            to { left: 100%; }
         }
 
         .form-message.success {
-            background: rgba(76, 175, 80, 0.2);
-            border: 1px solid rgba(76, 175, 80, 0.3);
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(56, 142, 60, 0.2));
+            border: 1px solid rgba(76, 175, 80, 0.4);
             color: #4caf50;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.3);
         }
 
         .form-message.error {
-            background: rgba(244, 67, 54, 0.2);
-            border: 1px solid rgba(244, 67, 54, 0.3);
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(198, 40, 40, 0.2));
+            border: 1px solid rgba(244, 67, 54, 0.4);
             color: #f44336;
+            box-shadow: 0 5px 20px rgba(244, 67, 54, 0.3);
         }
 
         .form-message.info {
-            background: rgba(33, 150, 243, 0.2);
-            border: 1px solid rgba(33, 150, 243, 0.3);
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(25, 118, 210, 0.2));
+            border: 1px solid rgba(33, 150, 243, 0.4);
             color: #2196f3;
+            box-shadow: 0 5px 20px rgba(33, 150, 243, 0.3);
         }
 
-        .messages-list {
-            margin-top: 20px;
-            text-align: left;
-            max-height: 200px;
-            overflow-y: auto;
-            display: none;
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
         }
 
-        .message-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border-left: 3px solid #00d4ff;
-        }
-
-        .message-item .msg-name {
-            font-weight: 600;
-            color: #00d4ff;
-            margin-bottom: 5px;
-        }
-
-        .message-item .msg-text {
-            color: #e0e0e0;
-            margin-bottom: 5px;
-        }
-
-        .message-item .msg-time {
-            font-size: 0.8rem;
-            color: #999;
-        }
-
-        .admin-panel {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .admin-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin: 5px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .admin-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .email-status {
-            margin-top: 10px;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            display: none;
-        }
-
-        .email-status.success {
-            background: rgba(76, 175, 80, 0.2);
-            color: #4caf50;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-
-        .email-status.error {
-            background: rgba(244, 67, 54, 0.2);
-            color: #f44336;
-            border: 1px solid rgba(244, 67, 54, 0.3);
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @media (max-width: 600px) {
             .portfolio-card {
-                padding: 30px 20px;
+                padding: 40px 25px;
                 margin: 10px;
             }
             
             .name {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
         }
+
+        /* Hover Effects */
+        .hover-glow {
+            animation: hoverPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes hoverPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Animated Particles Background -->
+    <div class="particles" id="particles"></div>
+    
     <div class="portfolio-card">
         <h1 class="name">Rohan Shelar</h1>
         <p class="instagram">
+            <span class="instagram-icon">📷</span>
             <a href="https://instagram.com/rohan_shelar_18" target="_blank" rel="noopener noreferrer">@rohan_shelar_18</a>
         </p>
         <div class="visitor-counter">
+            <span class="visitor-icon">👁</span>
             <span>Visitor #</span>
             <span id="visitorCount">1</span>
         </div>
@@ -273,52 +453,40 @@
         <h2 class="form-title">Send Me a Message</h2>
         <form id="contactForm">
             <div class="form-group">
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
             </div>
             <div class="form-group">
-                <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+                <textarea id="message" name="message" placeholder="Your Message" rows="4" required autocomplete="off"></textarea>
             </div>
             <button type="submit" class="submit-btn" id="submitBtn">
                 <span>Send Message</span>
             </button>
         </form>
         <div id="formMessage" class="form-message"></div>
-        
-        <div class="messages-list" id="messagesList">
-            <h3 style="color: #00d4ff; margin-bottom: 10px;">Recent Messages</h3>
-            <div id="messagesContainer"></div>
-        </div>
-
-        <div class="admin-panel">
-            <h4 style="color: #00d4ff; margin-bottom: 10px;">Admin Panel</h4>
-            <button class="admin-btn" onclick="generateRandomMessage()">Generate Random Message</button>
-            <button class="admin-btn" onclick="testGmailEmail()">Test Gmail Email</button>
-            <button class="admin-btn" onclick="toggleMessages()">Toggle Messages</button>
-            <div id="emailStatus" class="email-status"></div>
-        </div>
     </div>
 
     <script>
-        // Portfolio JavaScript - Real Gmail Email Sending with Web3Forms
+        // Portfolio JavaScript - Aesthetic UI with Animations
         document.addEventListener('DOMContentLoaded', function() {
-            // Simple visitor counter
+            // Create floating particles
+            createParticles();
+            
+            // Simple visitor counter with animation
             let count = localStorage.getItem('visitorCount') || 1;
             if (!sessionStorage.getItem('visited')) {
                 count = parseInt(count) + 1;
                 localStorage.setItem('visitorCount', count);
                 sessionStorage.setItem('visited', 'true');
+                
+                // Animate counter
+                animateCounter();
             }
             document.getElementById('visitorCount').textContent = count;
 
-            // Contact form - Real Gmail email sending
+            // Contact form with enhanced UX
             const contactForm = document.getElementById('contactForm');
             const submitBtn = document.getElementById('submitBtn');
             const formMessage = document.getElementById('formMessage');
-            const messagesList = document.getElementById('messagesList');
-            const messagesContainer = document.getElementById('messagesContainer');
-            
-            // Load existing messages
-            loadMessages();
             
             contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
@@ -329,57 +497,52 @@
                 // Validate inputs
                 if (!name || !message) {
                     showFormMessage('Please fill in all fields', 'error');
+                    shakeForm();
                     return;
                 }
                 
-                // Disable submit button
+                // Disable submit button with loading state
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span>Sending...</span>';
+                submitBtn.innerHTML = '<span><div class="loading-spinner"></div>Sending...</span>';
                 
                 try {
-                    // Store message locally first
-                    const messageData = {
-                        name: name,
-                        message: message,
-                        timestamp: new Date().toISOString(),
-                        id: Date.now().toString()
-                    };
-                    
-                    const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
-                    messages.unshift(messageData);
-                    localStorage.setItem('contactMessages', JSON.stringify(messages));
+                    // Add haptic feedback
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
                     
                     // Send real email to Gmail via Web3Forms
                     const emailSent = await sendGmailEmail(name, message);
                     
                     if (emailSent) {
-                        showFormMessage('Message sent successfully! I\'ll get back to you soon.', 'success');
+                        showFormMessage('✨ Message sent successfully! I\'ll get back to you soon.', 'success');
+                        celebrateSuccess();
                     } else {
-                        showFormMessage('Message received! I\'ll get back to you soon.', 'info');
+                        showFormMessage('📧 Message received! I\'ll get back to you soon.', 'info');
                     }
                     
                     contactForm.reset();
-                    loadMessages();
                     
                 } catch (error) {
                     console.error('Error:', error);
-                    showFormMessage('Message received! I\'ll get back to you soon.', 'info');
+                    showFormMessage('❌ Something went wrong. Please try again.', 'error');
+                    shakeForm();
                 } finally {
-                    // Re-enable submit button
+                    // Re-enable submit button with delay
                     setTimeout(() => {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = '<span>Send Message</span>';
-                    }, 2000);
+                    }, 2500);
                 }
             });
             
             // Send real email to Gmail using Web3Forms
             async function sendGmailEmail(name, message) {
                 try {
-                    // Web3Forms with your actual access key
+                    // Web3Forms with your access key
                     const web3Data = {
                         access_key: 'df839ff4-44ce-4dff-b3ec-1f2a9ad6883d',
-                        subject: `New message from ${name} - Rohan Shelar Portfolio`,
+                        subject: `✨ New message from ${name} - Rohan Shelar Portfolio`,
                         from_name: name,
                         message: message,
                         to_name: 'Rohan Shelar',
@@ -396,167 +559,99 @@
                     });
                     
                     if (web3Response.ok) {
-                        console.log('✅ Web3Forms email sent to Gmail successfully');
+                        console.log('✨ Web3Forms email sent to Gmail successfully');
                         return true;
                     } else {
-                        console.log('❌ Web3Forms failed, trying backup...');
+                        console.log('❌ Web3Forms failed');
                         return false;
                     }
                     
                 } catch (error) {
-                    console.error('❌ Email sending failed:', error);
+                    console.error('❌ Email sending error:', error);
                     return false;
                 }
             }
             
-            // Load and display messages
-            function loadMessages() {
-                const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
-                
-                if (messages.length > 0) {
-                    messagesList.style.display = 'block';
-                    messagesContainer.innerHTML = messages.slice(0, 5).map(msg => `
-                        <div class="message-item">
-                            <div class="msg-name">${msg.name} ${msg.isRandom ? '(Random)' : ''}</div>
-                            <div class="msg-text">${msg.message}</div>
-                            <div class="msg-time">${new Date(msg.timestamp).toLocaleString()}</div>
-                        </div>
-                    `).join('');
-                }
-            }
-            
-            // Form message functions
+            // Enhanced form message display
             function showFormMessage(message, type) {
                 formMessage.textContent = message;
                 formMessage.className = `form-message ${type}`;
                 formMessage.style.display = 'block';
                 
-                // Auto-hide after 5 seconds
+                // Auto-hide with smooth animation
                 setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
+                    formMessage.style.opacity = '0';
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                        formMessage.style.opacity = '1';
+                    }, 300);
+                }, 4000);
             }
-        });
-        
-        // Admin functions
-        function generateRandomMessage() {
-            const randomNames = ['John Doe', 'Jane Smith', 'Mike Johnson', 'Sarah Williams', 'David Brown', 'Emily Davis'];
-            const randomMessages = [
-                'Hey! Love your portfolio! Can we collaborate?',
-                'Amazing work! Would love to work with you.',
-                'Hi! I\'m interested in your services.',
-                'Great portfolio! Let\'s connect!',
-                'Hello! I have a project for you.',
-                'Your work is impressive! Can we talk?',
-                'Hi! Found your portfolio and love it!',
-                'Amazing designs! Want to hire you.'
-            ];
             
-            const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
-            const randomMessage = randomMessages[Math.floor(Math.random() * randomMessages.length)];
-            
-            // Store random message
-            const messageData = {
-                name: randomName,
-                message: randomMessage,
-                timestamp: new Date().toISOString(),
-                id: Date.now().toString(),
-                isRandom: true
-            };
-            
-            const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
-            messages.unshift(messageData);
-            localStorage.setItem('contactMessages', JSON.stringify(messages));
-            
-            // Reload messages display
-            loadMessages();
-            
-            // Show notification
-            showFormMessage(`Random message from ${randomName} generated!`, 'info');
-            
-            // Try to send email for random message too
-            sendGmailEmail(randomName, randomMessage);
-        }
-        
-        function testGmailEmail() {
-            const testName = 'Test User';
-            const testMessage = 'This is a test message to verify Gmail email sending is working.';
-            
-            // Send test email
-            const emailSent = sendGmailEmail(testName, testMessage);
-            
-            const emailStatus = document.getElementById('emailStatus');
-            if (emailSent) {
-                emailStatus.textContent = '✅ Test email sent to Gmail successfully!';
-                emailStatus.className = 'email-status success';
-            } else {
-                emailStatus.textContent = '❌ Email service failed. Check console for details.';
-                emailStatus.className = 'email-status error';
-            }
-            emailStatus.style.display = 'block';
-            
-            // Hide status after 5 seconds
-            setTimeout(() => {
-                emailStatus.style.display = 'none';
-            }, 5000);
-        }
-        
-        function toggleMessages() {
-            const messagesList = document.getElementById('messagesList');
-            messagesList.style.display = messagesList.style.display === 'none' ? 'block' : 'none';
-        }
-        
-        function loadMessages() {
-            const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
-            const messagesList = document.getElementById('messagesList');
-            const messagesContainer = document.getElementById('messagesContainer');
-            
-            if (messages.length > 0) {
-                messagesList.style.display = 'block';
-                messagesContainer.innerHTML = messages.slice(0, 5).map(msg => `
-                    <div class="message-item">
-                        <div class="msg-name">${msg.name} ${msg.isRandom ? '(Random)' : ''}</div>
-                        <div class="msg-text">${msg.message}</div>
-                        <div class="msg-time">${new Date(msg.timestamp).toLocaleString()}</div>
-                    </div>
-                `).join('');
-            }
-        }
-        
-        async function sendGmailEmail(name, message) {
-            try {
-                // Web3Forms with your actual access key
-                const web3Data = {
-                    access_key: 'df839ff4-44ce-4dff-b3ec-1f2a9ad6883d',
-                    subject: `New message from ${name} - Rohan Shelar Portfolio`,
-                    from_name: name,
-                    message: message,
-                    to_name: 'Rohan Shelar',
-                    reply_to: 'rohanshelar277@gmail.com',
-                    redirect: 'https://rohanshelar.netlify.app/thank-you'
-                };
+            // Create floating particles
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 15;
                 
-                const web3Response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(web3Data)
-                });
-                
-                if (web3Response.ok) {
-                    console.log('✅ Web3Forms email sent to Gmail successfully');
-                    return true;
-                } else {
-                    console.log('❌ Web3Forms failed');
-                    return false;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Animate visitor counter
+            function animateCounter() {
+                const counter = document.getElementById('visitorCount');
+                counter.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    counter.style.transition = 'transform 0.5s ease-out';
+                    counter.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        counter.style.transform = 'scale(1)';
+                    }, 200);
+                }, 100);
+            }
+            
+            // Shake form on error
+            function shakeForm() {
+                const card = document.querySelector('.portfolio-card');
+                card.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 500);
+            }
+            
+            // Success celebration
+            function celebrateSuccess() {
+                const card = document.querySelector('.portfolio-card');
+                card.style.animation = 'celebrate 1s ease-out';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 1000);
+            }
+            
+            // Add shake animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
                 }
                 
-            } catch (error) {
-                console.error('❌ Email sending error:', error);
-                return false;
-            }
-        }
+                @keyframes celebrate {
+                    0% { transform: scale(1) rotate(0deg); }
+                    50% { transform: scale(1.05) rotate(2deg); }
+                    100% { transform: scale(1) rotate(0deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
     </script>
 </body>
 </html>
