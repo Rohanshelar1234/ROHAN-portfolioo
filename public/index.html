@@ -143,31 +143,6 @@
             line-height: 1.6;
         }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            background: rgba(0, 212, 255, 0.15);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            color: #00d4ff;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: rgba(0, 212, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
-        }
-
         .social-links {
             display: flex;
             gap: 15px;
@@ -606,19 +581,6 @@
                 </p>
             </div>
             
-            <!-- Skills Card -->
-            <div class="side-card">
-                <div class="side-card-icon">🚀</div>
-                <h3 class="side-card-title">Skills</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">CSS</span>
-                    <span class="skill-tag">UI/UX</span>
-                </div>
-            </div>
-            
             <!-- Social Links Card -->
             <div class="side-card">
                 <div class="side-card-icon">🌐</div>
@@ -639,7 +601,7 @@
     </div>
 
     <script>
-        // Portfolio JavaScript - Enhanced with Additional Content
+        // Portfolio JavaScript - Clean & Focused
         document.addEventListener('DOMContentLoaded', function() {
             // Create floating particles
             createParticles();
@@ -764,7 +726,7 @@
             // Create floating particles
             function createParticles() {
                 const particlesContainer = document.getElementById('particles');
-                const particleCount = 20;
+                const particleCount = 15;
                 
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
