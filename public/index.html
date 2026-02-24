@@ -299,7 +299,7 @@
     </div>
 
     <script>
-        // Portfolio JavaScript - Real Gmail Email Sending
+        // Portfolio JavaScript - Real Gmail Email Sending with Web3Forms
         document.addEventListener('DOMContentLoaded', function() {
             // Simple visitor counter
             let count = localStorage.getItem('visitorCount') || 1;
@@ -349,7 +349,7 @@
                     messages.unshift(messageData);
                     localStorage.setItem('contactMessages', JSON.stringify(messages));
                     
-                    // Send real email to Gmail
+                    // Send real email to Gmail via Web3Forms
                     const emailSent = await sendGmailEmail(name, message);
                     
                     if (emailSent) {
@@ -373,12 +373,12 @@
                 }
             });
             
-            // Send real email to Gmail
+            // Send real email to Gmail using Web3Forms
             async function sendGmailEmail(name, message) {
                 try {
-                    // Method 1: Try Web3Forms (free, reliable)
+                    // Web3Forms with your actual access key
                     const web3Data = {
-                        access_key: 'YOUR_WEB3FORMS_KEY', // You need to get this from web3forms.com
+                        access_key: 'df839ff4-44ce-4dff-b3ec-1f2a9ad6883d',
                         subject: `New message from ${name} - Rohan Shelar Portfolio`,
                         from_name: name,
                         message: message,
@@ -396,76 +396,15 @@
                     });
                     
                     if (web3Response.ok) {
-                        console.log('Web3Forms email sent successfully');
+                        console.log('✅ Web3Forms email sent to Gmail successfully');
                         return true;
+                    } else {
+                        console.log('❌ Web3Forms failed, trying backup...');
+                        return false;
                     }
-                    
-                    // Method 2: Try Formspree (free, no setup needed)
-                    const formData = new FormData();
-                    formData.append('name', name);
-                    formData.append('message', message);
-                    formData.append('email', 'rohanshelar277@gmail.com');
-                    formData.append('subject', `New message from ${name} - Rohan Shelar Portfolio`);
-                    formData.append('_replyto', 'rohanshelar277@gmail.com');
-                    
-                    const formspreeResponse = await fetch('https://formspree.io/f/xjvnlvqy', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-                    
-                    if (formspreeResponse.ok) {
-                        console.log('Formspree email sent successfully');
-                        return true;
-                    }
-                    
-                    // Method 3: Try EmailJS (free, needs setup)
-                    const emailjsData = {
-                        service_id: 'service_your_id',
-                        template_id: 'template_your_id',
-                        user_id: 'your_public_key',
-                        template_params: {
-                            from_name: name,
-                            message: message,
-                            to_name: 'Rohan Shelar',
-                            reply_to: 'rohanshelar277@gmail.com',
-                            to_email: 'rohanshelar277@gmail.com'
-                        }
-                    };
-                    
-                    const emailjsResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(emailjsData)
-                    });
-                    
-                    if (emailjsResponse.ok) {
-                        console.log('EmailJS sent successfully');
-                        return true;
-                    }
-                    
-                    // Method 4: Final fallback - use SMTP service
-                    const smtpData = {
-                        host: 'smtp.elasticemail.com',
-                        port: 2525,
-                        username: 'rohanshelar277@gmail.com',
-                        password: 'your_elastic_email_password',
-                        from: 'rohanshelar277@gmail.com',
-                        to: 'rohanshelar277@gmail.com',
-                        subject: `New message from ${name} - Rohan Shelar Portfolio`,
-                        body: `Name: ${name}\n\nMessage: ${message}\n\nSent from: ${window.location.href}\nTime: ${new Date().toLocaleString()}`
-                    };
-                    
-                    // This would require a backend service, so we'll use a simpler approach
-                    console.log('All email services attempted, using local storage');
-                    return false;
                     
                 } catch (error) {
-                    console.error('Email sending failed:', error);
+                    console.error('❌ Email sending failed:', error);
                     return false;
                 }
             }
@@ -551,7 +490,7 @@
                 emailStatus.textContent = '✅ Test email sent to Gmail successfully!';
                 emailStatus.className = 'email-status success';
             } else {
-                emailStatus.textContent = '⚠️ Email services need setup. Check console for details.';
+                emailStatus.textContent = '❌ Email service failed. Check console for details.';
                 emailStatus.className = 'email-status error';
             }
             emailStatus.style.display = 'block';
@@ -586,14 +525,15 @@
         
         async function sendGmailEmail(name, message) {
             try {
-                // Try Web3Forms first (most reliable free service)
+                // Web3Forms with your actual access key
                 const web3Data = {
-                    access_key: 'YOUR_WEB3FORMS_KEY',
+                    access_key: 'df839ff4-44ce-4dff-b3ec-1f2a9ad6883d',
                     subject: `New message from ${name} - Rohan Shelar Portfolio`,
                     from_name: name,
                     message: message,
                     to_name: 'Rohan Shelar',
-                    reply_to: 'rohanshelar277@gmail.com'
+                    reply_to: 'rohanshelar277@gmail.com',
+                    redirect: 'https://rohanshelar.netlify.app/thank-you'
                 };
                 
                 const web3Response = await fetch('https://api.web3forms.com/submit', {
@@ -605,32 +545,12 @@
                 });
                 
                 if (web3Response.ok) {
-                    console.log('✅ Web3Forms email sent to Gmail');
+                    console.log('✅ Web3Forms email sent to Gmail successfully');
                     return true;
+                } else {
+                    console.log('❌ Web3Forms failed');
+                    return false;
                 }
-                
-                // Try Formspree as backup
-                const formData = new FormData();
-                formData.append('name', name);
-                formData.append('message', message);
-                formData.append('email', 'rohanshelar277@gmail.com');
-                formData.append('subject', `New message from ${name} - Rohan Shelar Portfolio`);
-                
-                const formspreeResponse = await fetch('https://formspree.io/f/xjvnlvqy', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (formspreeResponse.ok) {
-                    console.log('✅ Formspree email sent to Gmail');
-                    return true;
-                }
-                
-                console.log('❌ All email services failed');
-                return false;
                 
             } catch (error) {
                 console.error('❌ Email sending error:', error);
