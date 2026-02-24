@@ -1,8 +1,10 @@
 const nodemailer = require('nodemailer');
 
-// Email configuration using environment variables
-const GMAIL_USER = process.env.GMAIL_USER;
-const GMAIL_PASS = process.env.GMAIL_PASS;
+// Combined email credentials from environment variable
+const GMAIL_CREDENTIALS = process.env.GMAIL_CREDENTIALS;
+
+// Parse combined credentials
+const [GMAIL_USER, GMAIL_PASS] = GMAIL_CREDENTIALS ? GMAIL_CREDENTIALS.split(':') : [null, null];
 
 // Create email transporter with better configuration
 const transporter = nodemailer.createTransporter({
