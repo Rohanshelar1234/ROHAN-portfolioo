@@ -203,7 +203,7 @@
             50% { opacity: 0.3; }
         }
 
-        /* Enhanced Animated Name */
+        /* Fixed Animated Name - Now Visible */
         .name-container {
             position: relative;
             display: inline-block;
@@ -218,9 +218,11 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3),
+                        0 0 60px rgba(0, 153, 255, 0.2);
             position: relative;
             animation: nameEntrance 2s ease-out, nameGlow 3s ease-in-out infinite alternate, nameFloat 4s ease-in-out infinite;
+            display: inline-block;
         }
 
         @keyframes nameEntrance {
@@ -254,10 +256,12 @@
             50% { transform: translateY(-3px); }
         }
 
-        /* Animated Letters */
+        /* Animated Letters - Fixed */
         .name-letter {
             display: inline-block;
             animation: letterWave 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
         }
 
         .name-letter:nth-child(1) { animation-delay: 0s; }
@@ -274,8 +278,14 @@
         .name-letter:nth-child(12) { animation-delay: 1.1s; }
 
         @keyframes letterWave {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            0%, 100% { 
+                transform: translateY(0) scale(1);
+                color: #ffffff;
+            }
+            50% { 
+                transform: translateY(-3px) scale(1.05);
+                color: #00d4ff;
+            }
         }
 
         .instagram {
@@ -608,7 +618,7 @@
     <div class="particles" id="particles"></div>
     
     <div class="portfolio-container">
-        <!-- Main Card with Animated Name -->
+        <!-- Main Card with Fixed Animated Name -->
         <div class="main-card">
             <div class="name-container">
                 <h1 class="name">
@@ -686,7 +696,7 @@
     </div>
 
     <script>
-        // Portfolio JavaScript - Enhanced Animated Name
+        // Portfolio JavaScript - Fixed Animated Name
         document.addEventListener('DOMContentLoaded', function() {
             // Create floating particles
             createParticles();
