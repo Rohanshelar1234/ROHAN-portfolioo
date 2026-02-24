@@ -69,19 +69,131 @@
             100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
-        .portfolio-card {
+        .portfolio-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
+
+        .main-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 50px;
-            max-width: 550px;
-            width: 100%;
-            text-align: center;
+            flex: 1;
+            min-width: 350px;
             box-shadow: 0 20px 60px rgba(31, 38, 135, 0.4);
             position: relative;
             z-index: 10;
             animation: slideInUp 1s ease-out;
+        }
+
+        .side-cards {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 280px;
+        }
+
+        .side-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .side-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(31, 38, 135, 0.3);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .side-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .side-card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .side-card-content {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            color: #00d4ff;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 212, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
         }
 
         @keyframes slideInUp {
@@ -96,7 +208,8 @@
         }
 
         /* Glowing Border Animation */
-        .portfolio-card::before {
+        .main-card::before,
+        .side-card::before {
             content: '';
             position: absolute;
             top: -2px;
@@ -104,7 +217,7 @@
             right: -2px;
             bottom: -2px;
             background: linear-gradient(45deg, #00d4ff, #0099ff, #00d4ff);
-            border-radius: 24px;
+            border-radius: inherit;
             z-index: -1;
             opacity: 0;
             animation: glow 3s ease-in-out infinite alternate;
@@ -131,6 +244,13 @@
         @keyframes textGlow {
             0%, 100% { text-shadow: 0 0 30px rgba(0, 212, 255, 0.3); }
             50% { text-shadow: 0 0 40px rgba(0, 212, 255, 0.5); }
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #b3b3b3;
+            margin-bottom: 25px;
+            font-style: italic;
         }
 
         .instagram {
@@ -201,35 +321,16 @@
             font-size: 1.2rem;
         }
 
-        .welcome-message {
-            font-size: 1.2rem;
-            color: #e0e0e0;
-            margin-bottom: 35px;
-            line-height: 1.7;
-            position: relative;
-        }
-
-        .welcome-message::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-            transform: translateX(-50%);
-        }
-
-        .form-title {
-            font-size: 1.5rem;
+        .section-title {
+            font-size: 1.3rem;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
             display: inline-block;
         }
 
-        .form-title::after {
+        .section-title::after {
             content: '';
             position: absolute;
             bottom: -8px;
@@ -409,10 +510,36 @@
             100% { transform: rotate(360deg); }
         }
 
+        @media (max-width: 768px) {
+            .portfolio-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .side-cards {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                min-width: auto;
+            }
+            
+            .main-card {
+                min-width: auto;
+            }
+        }
+
         @media (max-width: 600px) {
-            .portfolio-card {
+            .portfolio-container {
+                padding: 10px;
+            }
+            
+            .main-card {
                 padding: 40px 25px;
-                margin: 10px;
+            }
+            
+            .side-card {
+                padding: 25px 20px;
+                min-width: 250px;
             }
             
             .name {
@@ -436,37 +563,83 @@
     <!-- Animated Particles Background -->
     <div class="particles" id="particles"></div>
     
-    <div class="portfolio-card">
-        <h1 class="name">Rohan Shelar</h1>
-        <p class="instagram">
-            <span class="instagram-icon">📷</span>
-            <a href="https://instagram.com/rohan_shelar_18" target="_blank" rel="noopener noreferrer">@rohan_shelar_18</a>
-        </p>
-        <div class="visitor-counter">
-            <span class="visitor-icon">👁</span>
-            <span>Visitor #</span>
-            <span id="visitorCount">1</span>
+    <div class="portfolio-container">
+        <!-- Main Card with Contact Form -->
+        <div class="main-card">
+            <h1 class="name">Rohan Shelar</h1>
+            <p class="tagline">Creative Developer & Digital Artist</p>
+            
+            <p class="instagram">
+                <span class="instagram-icon">📷</span>
+                <a href="https://instagram.com/rohan_shelar_18" target="_blank" rel="noopener noreferrer">@rohan_shelar_18</a>
+            </p>
+            
+            <div class="visitor-counter">
+                <span class="visitor-icon">👁</span>
+                <span>Visitor #</span>
+                <span id="visitorCount">1</span>
+            </div>
+            
+            <h2 class="section-title">Get In Touch</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Your Message" rows="4" required autocomplete="off"></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>Send Message</span>
+                </button>
+            </form>
+            <div id="formMessage" class="form-message"></div>
         </div>
         
-        <p class="welcome-message">Hey 👋 Thanks for checking my profile — let's connect!</p>
-        
-        <h2 class="form-title">Send Me a Message</h2>
-        <form id="contactForm">
-            <div class="form-group">
-                <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
+        <!-- Side Cards with Additional Content -->
+        <div class="side-cards">
+            <!-- About Card -->
+            <div class="side-card">
+                <div class="side-card-icon">👨‍💻</div>
+                <h3 class="side-card-title">About Me</h3>
+                <p class="side-card-content">
+                    Passionate developer with expertise in modern web technologies and creative design. I love building beautiful, functional applications that make a difference.
+                </p>
             </div>
-            <div class="form-group">
-                <textarea id="message" name="message" placeholder="Your Message" rows="4" required autocomplete="off"></textarea>
+            
+            <!-- Skills Card -->
+            <div class="side-card">
+                <div class="side-card-icon">🚀</div>
+                <h3 class="side-card-title">Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">UI/UX</span>
+                </div>
             </div>
-            <button type="submit" class="submit-btn" id="submitBtn">
-                <span>Send Message</span>
-            </button>
-        </form>
-        <div id="formMessage" class="form-message"></div>
+            
+            <!-- Social Links Card -->
+            <div class="side-card">
+                <div class="side-card-icon">🌐</div>
+                <h3 class="side-card-title">Connect</h3>
+                <div class="social-links">
+                    <a href="https://instagram.com/rohan_shelar_18" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
+                        📷
+                    </a>
+                    <a href="https://github.com/Rohanshelar1234" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                        🐙
+                    </a>
+                    <a href="mailto:rohanshelar277@gmail.com" class="social-link" title="Email">
+                        ✉️
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Portfolio JavaScript - Aesthetic UI with Animations
+        // Portfolio JavaScript - Enhanced with Additional Content
         document.addEventListener('DOMContentLoaded', function() {
             // Create floating particles
             createParticles();
@@ -591,7 +764,7 @@
             // Create floating particles
             function createParticles() {
                 const particlesContainer = document.getElementById('particles');
-                const particleCount = 15;
+                const particleCount = 20;
                 
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
@@ -619,7 +792,7 @@
             
             // Shake form on error
             function shakeForm() {
-                const card = document.querySelector('.portfolio-card');
+                const card = document.querySelector('.main-card');
                 card.style.animation = 'shake 0.5s ease-in-out';
                 setTimeout(() => {
                     card.style.animation = '';
@@ -628,7 +801,7 @@
             
             // Success celebration
             function celebrateSuccess() {
-                const card = document.querySelector('.portfolio-card');
+                const card = document.querySelector('.main-card');
                 card.style.animation = 'celebrate 1s ease-out';
                 setTimeout(() => {
                     card.style.animation = '';
