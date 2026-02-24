@@ -41,18 +41,18 @@
             font-size: 2rem;
             font-weight: 800;
             color: #ffffff;
-            background: linear-gradient(45deg, #00d4ff, #0099ff, #00d4ff);
+            background: linear-gradient(45deg, #ffffff, #cccccc, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
         }
 
         .typing-cursor {
             display: inline-block;
             width: 3px;
             height: 2rem;
-            background: #00d4ff;
+            background: #ffffff;
             animation: blink 1s infinite;
             vertical-align: text-bottom;
             margin-left: 2px;
@@ -71,7 +71,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(0,212,255,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(0,153,255,0.1);stop-opacity:1" /></linearGradient></defs><circle cx="50" cy="50" r="40" fill="none" stroke="url(%23grad)" stroke-width="0.5" opacity="0.3"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(200,200,200,0.1);stop-opacity:1" /></linearGradient></defs><circle cx="50" cy="50" r="40" fill="none" stroke="url(%23grad)" stroke-width="0.5" opacity="0.3"/></svg>');
             background-size: 200px 200px;
             animation: float 20s infinite linear;
             z-index: -1;
@@ -98,7 +98,7 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(0, 212, 255, 0.5);
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
             animation: particle-float 15s infinite linear;
         }
@@ -128,7 +128,7 @@
             padding: 50px;
             flex: 1;
             min-width: 350px;
-            box-shadow: 0 20px 60px rgba(31, 38, 135, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
             position: relative;
             z-index: 10;
             animation: slideInUp 1s ease-out;
@@ -156,8 +156,8 @@
 
         .side-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(31, 38, 135, 0.3);
-            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .side-card-icon {
@@ -208,9 +208,9 @@
         }
 
         .social-link:hover {
-            background: rgba(0, 212, 255, 0.2);
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes slideInUp {
@@ -233,7 +233,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #00d4ff, #0099ff, #00d4ff);
+            background: linear-gradient(45deg, #ffffff, #cccccc, #ffffff);
             border-radius: inherit;
             z-index: -1;
             opacity: 0;
@@ -266,10 +266,10 @@
         }
 
         .instagram a:hover {
-            color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .instagram-icon {
@@ -281,12 +281,12 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(0, 212, 255, 0.15);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 30px;
             padding: 12px 24px;
             font-size: 0.95rem;
-            color: #00d4ff;
+            color: #ffffff;
             font-weight: 600;
             margin-bottom: 25px;
             position: relative;
@@ -300,7 +300,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             animation: shimmer 2s infinite;
         }
 
@@ -328,7 +328,7 @@
             left: 50%;
             width: 50px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
             transform: translateX(-50%);
         }
 
@@ -348,7 +348,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, #00d4ff, #0099ff, #00d4ff);
+            background: linear-gradient(90deg, #ffffff, #cccccc, #ffffff);
             border-radius: 1px;
         }
 
@@ -386,10 +386,10 @@
         .form-group textarea:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.12);
-            border-color: #00d4ff;
+            border-color: #ffffff;
             border-width: 2px;
-            box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.2), 
-                        0 0 20px rgba(0, 212, 255, 0.1);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2), 
+                        0 0 20px rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
         }
 
@@ -399,11 +399,11 @@
         }
 
         .submit-btn {
-            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            background: linear-gradient(45deg, #ffffff, #cccccc);
             border: none;
             border-radius: 12px;
             padding: 18px 40px;
-            color: #ffffff;
+            color: #000000;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
@@ -422,7 +422,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
             transition: left 0.5s ease;
         }
 
@@ -432,13 +432,13 @@
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-            background: linear-gradient(45deg, #00e5ff, #00a8ff);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #f0f0f0, #d0d0d0);
         }
 
         .submit-btn:active {
             transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .submit-btn:disabled {
@@ -509,8 +509,8 @@
             display: inline-block;
             width: 16px;
             height: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top: 2px solid #ffffff;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-top: 2px solid #000000;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-right: 8px;
@@ -656,7 +656,7 @@
     </div>
 
     <script>
-        // Portfolio JavaScript - Typing Effect in Header
+        // Portfolio JavaScript - Black Color Theme
         document.addEventListener('DOMContentLoaded', function() {
             // Typing effect for name
             const text = "Rohan Shelar";
