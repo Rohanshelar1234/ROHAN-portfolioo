@@ -497,6 +497,98 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Next Steps Section */
+        .next-steps {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            animation: nextStepsShimmer 3s infinite;
+        }
+
+        @keyframes nextStepsShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .next-steps-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .next-steps-icon {
+            font-size: 1.3rem;
+            animation: nextStepsPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes nextStepsPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .next-steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .next-steps-list li {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+            animation: stepSlide 0.5s ease-out;
+        }
+
+        .next-steps-list li:nth-child(1) { animation-delay: 0.1s; }
+        .next-steps-list li:nth-child(2) { animation-delay: 0.2s; }
+        .next-steps-list li:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes stepSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .next-steps-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-weight: bold;
+            animation: arrowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
         @media (max-width: 768px) {
             .portfolio-container {
                 flex-direction: column;
@@ -581,6 +673,19 @@
                 </button>
             </form>
             <div id="formMessage" class="form-message"></div>
+            
+            <!-- Next Steps Section -->
+            <div class="next-steps">
+                <div class="next-steps-title">
+                    <span class="next-steps-icon">🚀</span>
+                    <span>What's Next</span>
+                </div>
+                <ul class="next-steps-list">
+                    <li>I'll review your message and get back to you within 24 hours</li>
+                    <li>Let's schedule a call to discuss your project requirements</li>
+                    <li>Together, we'll create something amazing!</li>
+                </ul>
+            </div>
         </div>
         
         <!-- Side Cards with Additional Content -->
@@ -614,7 +719,7 @@
     </div>
 
     <script>
-        // Portfolio JavaScript - Updated with Typical Format
+        // Portfolio JavaScript - With Next Steps Section
         document.addEventListener('DOMContentLoaded', function() {
             // Create floating particles
             createParticles();
