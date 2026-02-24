@@ -1,12 +1,13 @@
 const nodemailer = require('nodemailer');
 
-// Combined email credentials from environment variable
-const GMAIL_CREDENTIALS = process.env.GMAIL_CREDENTIALS;
+// Try multiple sources for Gmail credentials
+const GMAIL_CREDENTIALS = process.env.GMAIL_CREDENTIALS || 
+                          process.env.GMAIL_USER + ':' + process.env.GMAIL_PASS;
 
 // Parse combined credentials
 const [GMAIL_USER, GMAIL_PASS] = GMAIL_CREDENTIALS ? GMAIL_CREDENTIALS.split(':') : [null, null];
 
-// Create email transporter with better configuration
+// Create email transporter
 const transporter = nodemailer.createTransporter({
   service: 'gmail',
   host: 'smtp.gmail.com',
@@ -18,9 +19,7 @@ const transporter = nodemailer.createTransporter({
   },
   tls: {
     rejectUnauthorized: false
-  },
-  debug: true,
-  logger: true
+  }
 });
 
 exports.handler = async (event, context) => {
@@ -50,23 +49,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Parse request body
-    let requestBody;
-    try {
-      requestBody = JSON.parse(event.body);
-    } catch (parseError) {
-      console.error('JSON parse error:', parseError);
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ 
-          success: false, 
-          message: 'Invalid request format' 
-        })
-      };
-    }
-
-    const { name, message } = requestBody;
+    const { name, message } = JSON.parse(event.body);
     
     // Validate inputs
     if (!name || !message) {
@@ -93,26 +76,10 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Verify transporter connection
-    try {
-      await transporter.verify();
-      console.log('Email transporter verified successfully');
-    } catch (verifyError) {
-      console.error('Email transporter verification failed:', verifyError);
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ 
-          success: false, 
-          message: 'Email service connection failed' 
-        })
-      };
-    }
-
     // Send email
     const emailText = `📬 New contact form submission!\n\n👤 Name: ${name}\n💬 Message: ${message}\n⏰ Time: ${new Date().toLocaleString()}\n🌐 Source: Netlify Deployment`;
     
-    const mailOptions = {
+    await transporter.sendMail({
       from: `"Rohan Shelar Portfolio" <${GMAIL_USER}>`,
       to: GMAIL_USER,
       subject: '📧 Contact Form Submission - Rohan Shelar Portfolio',
@@ -129,11 +96,9 @@ exports.handler = async (event, context) => {
           </div>
         </div>
       `
-    };
-
-    console.log('Attempting to send email...');
-    const result = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully:', result.messageId);
+    });
+    
+    console.log('Email sent successfully from:', name);
     
     return {
       statusCode: 200,
@@ -145,25 +110,12 @@ exports.handler = async (event, context) => {
 
   } catch (error) {
     console.error('Email sending failed:', error);
-    
-    // Return specific error messages based on error type
-    let errorMessage = 'Failed to send message. Please try again.';
-    
-    if (error.code === 'EAUTH') {
-      errorMessage = 'Email authentication failed. Check Gmail credentials.';
-    } else if (error.code === 'ECONNECTION') {
-      errorMessage = 'Email service connection failed. Please try again.';
-    } else if (error.code === 'EMESSAGE') {
-      errorMessage = 'Invalid email format. Please check configuration.';
-    }
-    
     return {
       statusCode: 500,
       headers,
       body: JSON.stringify({ 
         success: false, 
-        message: errorMessage,
-        error: error.message 
+        message: 'Failed to send message. Please try again.' 
       })
     };
   }
