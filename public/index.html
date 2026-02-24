@@ -4,69 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohan Shelar - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .instagram {
+            font-size: 1.1rem;
+            color: #b3b3b3;
+            margin-bottom: 20px;
+        }
+
+        .instagram a {
+            color: #b3b3b3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .instagram a:hover {
+            color: #00d4ff;
+        }
+
+        .visitor-counter {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 25px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            color: #00d4ff;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .welcome-message {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .form-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+        }
+
+        .form-message.error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            color: #f44336;
+        }
+
+        @media (max-width: 600px) {
+            .portfolio-card {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+        }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Full Screen Loader -->
-    <div id="loader" class="loader">
-        <div class="loader-text">
-            <h1>Loading Rohan Shelar Portfolio...</h1>
+    <div class="portfolio-card">
+        <h1 class="name">Rohan Shelar</h1>
+        <p class="instagram">
+            <a href="https://instagram.com/rohan_shelar_18" target="_blank" rel="noopener noreferrer">@rohan_shelar_18</a>
+        </p>
+        <div class="visitor-counter">
+            <span>Visitor #</span>
+            <span id="visitorCount">1</span>
         </div>
+        
+        <p class="welcome-message">Hey 👋 Thanks for checking my profile — let's connect!</p>
+        
+        <h2 class="form-title">Send Me a Message</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span>Send Message</span>
+            </button>
+        </form>
+        <div id="formMessage" class="form-message"></div>
     </div>
 
-    <!-- Particle Background Canvas -->
-    <canvas id="particleCanvas"></canvas>
-
-    <!-- Main Content -->
-    <div class="main-container">
-        <div class="glass-card">
-            <!-- Typing Animation Section -->
-            <div class="typing-section">
-                <div class="typing-text">
-                    <span id="typingText"></span>
-                    <span class="cursor">|</span>
-                </div>
-            </div>
-
-            <!-- Profile Section -->
-            <div class="profile-section">
-                <div class="profile-info">
-                    <h1 class="name">Rohan Shelar</h1>
-                    <p class="instagram">
-                        <a href="https://instagram.com/rohan_shelar_18" target="_blank" rel="noopener noreferrer">@rohan_shelar_18</a>
-                    </p>
-                    <div class="visitor-counter">
-                        <span>Visitor #</span>
-                        <span id="visitorCount">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Welcome Message -->
-            <div class="welcome-section">
-                <p class="welcome-message">Hey 👋 Thanks for checking my profile — let's connect!</p>
-            </div>
-
-            <!-- Contact Form -->
-            <div class="contact-section">
-                <h2 class="form-title">Send Me a Message</h2>
-                <form id="contactForm" class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <span>Send Message</span>
-                    </button>
-                </form>
-                <div id="formMessage" class="form-message"></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    <script src="script_netlify.js"></script>
 </body>
 </html>
