@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Header with Typing Name */
+        /* Header with Multi-Message Typing Animation */
         .header {
             position: fixed;
             top: 0;
@@ -37,7 +37,14 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .typing-name {
+        .typing-container {
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typing-text {
             font-size: 2rem;
             font-weight: 800;
             color: #ffffff;
@@ -243,6 +250,37 @@
         @keyframes glow {
             0%, 100% { opacity: 0; }
             50% { opacity: 0.3; }
+        }
+
+        /* Profile Details Section */
+        .profile-details {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .profile-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .profile-label {
+            font-weight: 600;
+            margin-right: 10px;
+            color: #cccccc;
+        }
+
+        .profile-value {
+            color: #ffffff;
+            font-weight: 500;
         }
 
         .instagram {
@@ -542,7 +580,7 @@
                 padding: 15px;
             }
 
-            .typing-name {
+            .typing-text {
                 font-size: 1.5rem;
             }
         }
@@ -565,7 +603,7 @@
                 padding: 10px;
             }
 
-            .typing-name {
+            .typing-text {
                 font-size: 1.2rem;
             }
         }
@@ -583,10 +621,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header with Typing Name -->
+    <!-- Header with Multi-Message Typing Animation -->
     <div class="header">
-        <div class="typing-name">
-            <span id="typingText"></span>
+        <div class="typing-container">
+            <span class="typing-text" id="typingText"></span>
             <span class="typing-cursor"></span>
         </div>
     </div>
@@ -597,6 +635,18 @@
     <div class="portfolio-container">
         <!-- Main Card with Contact Form -->
         <div class="main-card">
+            <!-- Profile Details Section -->
+            <div class="profile-details">
+                <div class="profile-item">
+                    <span class="profile-label">Name:</span>
+                    <span class="profile-value">Rohan Shelar</span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">Instagram ID:</span>
+                    <span class="profile-value">@rohan_shelar_18</span>
+                </div>
+            </div>
+            
             <p class="instagram">
                 <span class="instagram-icon">📷</span>
                 <a href="https://instagram.com/rohan_shelar_18" target="_blank" rel="noopener noreferrer">@rohan_shelar_18</a>
@@ -656,22 +706,52 @@
     </div>
 
     <script>
-        // Portfolio JavaScript - Black Color Theme
+        // Portfolio JavaScript - Multi-Message Typing Animation
         document.addEventListener('DOMContentLoaded', function() {
-            // Typing effect for name
-            const text = "Rohan Shelar";
-            const typingElement = document.getElementById('typingText');
+            // Multi-message typing animation
+            const messages = [
+                "Hi, I'm Rohan Shelar",
+                "Welcome to my page",
+                "Let's connect on Instagram"
+            ];
+            
+            let messageIndex = 0;
             let charIndex = 0;
+            let isDeleting = false;
+            const typingElement = document.getElementById('typingText');
             
             function typeWriter() {
-                if (charIndex < text.length) {
-                    typingElement.textContent += text.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, 150);
+                const currentMessage = messages[messageIndex];
+                
+                if (!isDeleting) {
+                    // Typing
+                    if (charIndex < currentMessage.length) {
+                        typingElement.textContent += currentMessage.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeWriter, 100);
+                    } else {
+                        // Finished typing, wait before deleting
+                        setTimeout(() => {
+                            isDeleting = true;
+                            typeWriter();
+                        }, 2000);
+                    }
+                } else {
+                    // Deleting
+                    if (charIndex > 0) {
+                        typingElement.textContent = currentMessage.substring(0, charIndex - 1);
+                        charIndex--;
+                        setTimeout(typeWriter, 50);
+                    } else {
+                        // Finished deleting, move to next message
+                        isDeleting = false;
+                        messageIndex = (messageIndex + 1) % messages.length;
+                        setTimeout(typeWriter, 500);
+                    }
                 }
             }
             
-            // Start typing effect
+            // Start typing animation
             typeWriter();
             
             // Create floating particles
